@@ -1,3 +1,8 @@
+"""
+This is a generic solution that would require SqlAlchemy
+or Django models to get and serialize the data to work properly
+"""
+
 from datetime import datetime
 
 
