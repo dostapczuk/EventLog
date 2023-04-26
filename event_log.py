@@ -1,4 +1,3 @@
-import json
 from datetime import datetime
 
 
@@ -30,12 +29,12 @@ class EventLog(object):
                 "event": event.event
             }
             event_logs.append(event_log)
-        return json.dumps(event_logs)
+        return event_logs[:10]
 
     def add_event(self, event: str):
         event_words = event.split(" ")
         person = []
-        time = str(datetime.now())
+        time = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
         category = []
         for word in event_words:
             if word.startswith("@"):
@@ -50,7 +49,7 @@ class EventLog(object):
         }
         event_obj = Event(**event_log)
         self.events.append(event_obj)
-        return json.dumps(event_log)
+        return event_log
 
     def get_events_by_category(self, category):
         filtered_events = [event for event in self.events if category in event.category]
